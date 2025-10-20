@@ -1,5 +1,5 @@
 import { MikroORM } from '@mikro-orm/core';
-const config = require('./mikro-orm.config').default;
+const config = require('../mikro-orm.config').default;
 let orm: MikroORM | null = null;
 
 export async function initORM() {

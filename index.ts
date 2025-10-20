@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { MikroORM } from '@mikro-orm/core';
-import { User } from './models/user.entity';
+import { User } from './src/models/user.entity';
 
 // ✅ Import correct de la config (compatible require + default export)
 const config = require('./mikro-orm.config').default;

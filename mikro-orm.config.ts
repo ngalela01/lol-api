@@ -1,5 +1,5 @@
 import { defineConfig } from '@mikro-orm/sqlite';
-import { User } from 'src/models/user.entity';
+import { User } from './src/models/user.entity';
 
 export default defineConfig({
   dbName: 'database.sqlite', // nom du fichier SQLite
@@ -9,4 +9,8 @@ export default defineConfig({
     nativeBinding: true,
   },
   debug: true, // affiche les requêtes SQL dans la console
+  migrations: {
+    path: './migrations', // ✅ dossier où MikroORM stockera les fichiers de migration
+    glob: '!(*.d).{js,ts}', // ✅ supporte TS et JS
+  },
 });
