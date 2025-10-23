@@ -8,9 +8,9 @@ export class User {
   @Property()
   name!: string;
 
-  @Property({ nullable: true })
-  email?: string;
+  @Property()
+  email!: string;
 
-  @Property({ defaultRaw: 'CURRENT_TIMESTAMP' })
-  createdAt: Date  
+  @Property({ onCreate: () => new Date() })
+  createdAt!: Date;
 }
