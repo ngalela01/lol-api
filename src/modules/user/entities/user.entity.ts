@@ -6,10 +6,10 @@ export class User {
   id!: number;
 
   @Property()
-  name!: string;
+  email!: string;
 
   @Property()
-  email!: string;
+  password!: string;
 
   @Property({ onCreate: () => new Date() })
   createdAt!: Date;

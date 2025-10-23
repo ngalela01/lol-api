@@ -1,6 +1,6 @@
 import { Migration } from '@mikro-orm/migrations';
 
-export class Migration20251023131950 extends Migration {
+export class Migration20251023160116 extends Migration {
 
   override async up(): Promise<void> {
     this.addSql(`create table \`Country\` (\`id_country\` text not null, \`name_country\` text not null, \`code_iso\` text not null, primary key (\`id_country\`));`);
@@ -34,6 +34,8 @@ export class Migration20251023131950 extends Migration {
 
     this.addSql(`create table \`Tournament\` (\`id_tournament\` text not null, \`name_tournament\` text not null, primary key (\`id_tournament\`));`);
     this.addSql(`create unique index \`Tournament_name_tournament_unique\` on \`Tournament\` (\`name_tournament\`);`);
+
+    this.addSql(`create table \`user\` (\`id\` integer not null primary key autoincrement, \`email\` text not null, \`password\` text not null, \`created_at\` datetime not null);`);
 
     this.addSql(`create table \`Years\` (\`id_years\` text not null, \`year\` integer not null, primary key (\`id_years\`));`);
 
