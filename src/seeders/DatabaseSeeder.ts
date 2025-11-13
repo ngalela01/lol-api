@@ -11,6 +11,7 @@ import { AnnualleagueSeeder } from './annual-league.seeder';
 import { ParticipantSeeder } from './participant.seeder';
 import { NationalitySeeder } from './nationality.seeder';
 import { annualTournamentSeeder } from './annual-tournament.seeder';
+import { UserSeeder } from './UserSeeder';
 
 export class DatabaseSeeder extends Seeder {
   async run(em) {
@@ -27,7 +28,8 @@ export class DatabaseSeeder extends Seeder {
       TournamentSeeder,       // Les tournois
       AnnualleagueSeeder,     // Les éditions de ligues (besoin d’années + ligues)
       annualTournamentSeeder, // Les éditions de tournois
-      ParticipantSeeder,      // Les participants (besoin d’équipes + tournois)
+      ParticipantSeeder,
+      UserSeeder      // Les participants (besoin d’équipes + tournois)
             // Nationalités (besoin de joueurs + pays)
     ]);
 

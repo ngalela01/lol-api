@@ -16,7 +16,7 @@ import { Nationality } from './src/modules/nationality/entities/nationality.enti
 export default defineConfig({
   dbName: 'database.sqlite',
   // entities: [User],
-    entities: [
+  entities: [
     Region,
     Country,
     Years,
@@ -28,17 +28,18 @@ export default defineConfig({
     Tournament,
     AnnualTournament,
     Participant,
-    Nationality
+    Nationality,
+    User,
   ],
   driverOptions: {
     nativeBinding: true,
   },
-  debug: true, 
+  debug: true,
   migrations: {
     path: './migrations',
-    glob: '!(*.d).{js,ts}', 
+    glob: '!(*.d).{js,ts}',
   },
-    schemaGenerator: {
-    disableForeignKeys: true, 
+  schemaGenerator: {
+    disableForeignKeys: true,
   },
 });
