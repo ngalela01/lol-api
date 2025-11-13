@@ -14,6 +14,7 @@ import { AnnualTournamentModule } from './modules/annual-tournament/annual-tourn
 import { ParticipantModule } from './modules/participant/participant.module';
 import { NationalityModule } from './modules/nationality/nationality.module';
 import { UserModule } from './modules/user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { UserModule } from './modules/user/user.module';
     ParticipantModule,
     NationalityModule,
     UserModule,
+    AuthModule
   ],
 })
 export class AppModule {}

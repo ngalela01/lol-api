@@ -12,5 +12,6 @@ export class User {
   password!: string;
 
   @Property({ onCreate: () => new Date() })
-  createdAt!: Date;
+  createdAt ?: Date;
 }
+
