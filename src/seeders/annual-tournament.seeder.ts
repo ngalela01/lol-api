@@ -1,7 +1,7 @@
 import { Seeder } from '@mikro-orm/seeder';
 import { Tournament } from '../modules/tournament/entities/tournament.entity';
 import { AnnualTournament } from '../modules/annual-tournament/entities/annual-tournament.entity';
-import { Years } from '../modules/years/entities/year.entity';
+import { Years } from '../modules/years/entities/years.entity';
 
 
 export class annualTournamentSeeder extends Seeder {

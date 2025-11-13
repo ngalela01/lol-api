@@ -1,1 +1,3 @@
-export class CreateYearDto {}
+export class CreateYearDto {
+    year: number
+}

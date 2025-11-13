@@ -1,7 +1,7 @@
 import { Seeder } from '@mikro-orm/seeder';
 import { League } from '../modules/league/entities/league.entity';
 import { AnnualLeague } from '../modules/annual-league/entities/annual-league.entity';
-import { Years } from '../modules/years/entities/year.entity';
+import { Years } from '../modules/years/entities/years.entity';
 
 
 
