@@ -8,9 +8,9 @@ export class LeagueController {
   constructor(private readonly leagueService: LeagueService) {}
 
 
-  @Get()
+  /*@Get()
   findAll() {
     return this.leagueService.findAll();
-  }
+  }*/
 
 }

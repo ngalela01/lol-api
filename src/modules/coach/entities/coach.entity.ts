@@ -8,4 +8,9 @@ export class Coach {
 
   @OneToOne(() => Participant, { owner: true, deleteRule: 'cascade' })
   participant!: Participant;
+
+  constructor(id_participant: string, participant: Participant){
+    this.id_participant = id_participant;
+    this.participant = participant;
+  }  
 }

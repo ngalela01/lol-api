@@ -28,4 +28,15 @@ export class AnnualTournament {
 
   @Property({ nullable: true })
   winner?: string;
+
+  constructor(years: Years, tournament: Tournament, year_id: string, league_id: string, country: Country, dateBeg: Date, dateEnd: Date, winner: string){
+      this.id_years = year_id;
+      this.id_tournament = league_id;
+      this.year = years;
+      this.tournament = tournament;
+      this.country = country;
+      this.date_beginning = dateBeg;
+      this.date_end = dateEnd;
+      this.winner = winner;
+    }
 }
