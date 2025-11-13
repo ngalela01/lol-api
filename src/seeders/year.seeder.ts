@@ -1,5 +1,5 @@
 import { Seeder } from '@mikro-orm/seeder';
-import { Years } from '../modules/years/entities/year.entity';
+import { Years } from '../modules/years/entities/years.entity';
 
 
 export class YearSeeder extends Seeder {

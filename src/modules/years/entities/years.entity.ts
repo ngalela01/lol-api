@@ -8,7 +8,8 @@ import { AnnualTournament } from '../../annual-tournament/entities/annual-tourna
 @Entity({ tableName: 'Years' })
 export class Years {
   @PrimaryKey()
-  id_years: string = uuidv4(); ;
+  id_years: string = uuidv4();
+
 
   @Property()
   year!: number;

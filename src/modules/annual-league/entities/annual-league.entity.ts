@@ -1,7 +1,7 @@
 import { Entity, PrimaryKey, Property, ManyToOne } from '@mikro-orm/core';
 import { Country } from '../../country/entities/country.entity';
 import { League } from '../../league/entities/league.entity';
-import { Years } from '../../years/entities/year.entity';
+import { Years } from '../../years/entities/years.entity';
 
 @Entity({ tableName: 'Annual_League' })
 export class AnnualLeague {

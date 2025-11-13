@@ -8,7 +8,7 @@ import { Player } from './src/modules/player/entities/player.entity';
 import { Coach } from './src/modules/coach/entities/coach.entity';
 import { Tournament } from './src/modules/tournament/entities/tournament.entity';
 import { Participant } from './src/modules/participant/entities/participant.entity';
-import { Years } from './src/modules/years/entities/year.entity';
+import { Years } from './src/modules/years/entities/years.entity';
 import { AnnualLeague } from './src/modules/annual-league/entities/annual-league.entity';
 import { AnnualTournament } from './src/modules/annual-tournament/entities/annual-tournament.entity';
 import { Nationality } from './src/modules/nationality/entities/nationality.entity';
