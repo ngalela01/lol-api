@@ -7,8 +7,8 @@ import { Years } from '../modules/years/entities/year.entity';
 
 export class AnnualleagueSeeder extends Seeder {
   async run(em) {
-    const lec = await em.findOneOrFail(League, { name_league: 'LEC' });
-    const lck = await em.findOneOrFail(League, { name_league: 'LCK' });
+    const lec = await em.findOneOrFail(League, { short_name_league: 'LEC' });
+    const lck = await em.findOneOrFail(League, { short_name_league: 'LCK' });
     const year2024 = await em.findOneOrFail(Years, { year: 2024 });
 
     em.create(AnnualLeague, {

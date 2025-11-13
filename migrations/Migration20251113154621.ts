@@ -1,6 +1,6 @@
 import { Migration } from '@mikro-orm/migrations';
 
-export class Migration20251023135328 extends Migration {
+export class Migration20251113154621 extends Migration {
 
   override async up(): Promise<void> {
     this.addSql(`create table \`Country\` (\`id_country\` text not null, \`name_country\` text not null, \`code_iso\` text not null, primary key (\`id_country\`));`);
@@ -10,8 +10,9 @@ export class Migration20251023135328 extends Migration {
     this.addSql(`create table \`Region\` (\`id_region\` text not null, \`name_region\` text not null, primary key (\`id_region\`));`);
     this.addSql(`create unique index \`Region_name_region_unique\` on \`Region\` (\`name_region\`);`);
 
-    this.addSql(`create table \`League\` (\`id_league\` text not null, \`name_league\` text not null, \`region_id_region\` text not null, constraint \`League_region_id_region_foreign\` foreign key(\`region_id_region\`) references \`Region\`(\`id_region\`) on update cascade, primary key (\`id_league\`));`);
-    this.addSql(`create unique index \`League_name_league_unique\` on \`League\` (\`name_league\`);`);
+    this.addSql(`create table \`League\` (\`id_league\` text not null, \`long_name_league\` text not null, \`short_name_league\` text not null, \`region_id_region\` text not null, constraint \`League_region_id_region_foreign\` foreign key(\`region_id_region\`) references \`Region\`(\`id_region\`) on update cascade, primary key (\`id_league\`));`);
+    this.addSql(`create unique index \`League_long_name_league_unique\` on \`League\` (\`long_name_league\`);`);
+    this.addSql(`create unique index \`League_short_name_league_unique\` on \`League\` (\`short_name_league\`);`);
     this.addSql(`create index \`League_region_id_region_index\` on \`League\` (\`region_id_region\`);`);
 
     this.addSql(`create table \`Team\` (\`id_team\` text not null, \`name_team\` text not null, \`creation_date\` datetime null, \`country_id_country\` text not null, \`league_id_league\` text not null, constraint \`Team_country_id_country_foreign\` foreign key(\`country_id_country\`) references \`Country\`(\`id_country\`) on update cascade, constraint \`Team_league_id_league_foreign\` foreign key(\`league_id_league\`) references \`League\`(\`id_league\`) on update cascade, primary key (\`id_team\`));`);

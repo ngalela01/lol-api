@@ -38,7 +38,7 @@ export class CoachService {
     }
 
     entite.participant = participant;
-
+    
     await this.em.flush();
     return entite;
   }  

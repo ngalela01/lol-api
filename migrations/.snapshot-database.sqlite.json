@@ -133,8 +133,18 @@
           "length": null,
           "mappedType": "text"
         },
-        "name_league": {
-          "name": "name_league",
+        "long_name_league": {
+          "name": "long_name_league",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "short_name_league": {
+          "name": "short_name_league",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -158,10 +168,20 @@
       "indexes": [
         {
           "columnNames": [
-            "name_league"
+            "long_name_league"
           ],
           "composite": false,
-          "keyName": "League_name_league_unique",
+          "keyName": "League_long_name_league_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "short_name_league"
+          ],
+          "composite": false,
+          "keyName": "League_short_name_league_unique",
           "constraint": true,
           "primary": false,
           "unique": true
