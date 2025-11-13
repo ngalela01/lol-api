@@ -69,7 +69,7 @@ export class TeamService {
     );
     
     if (team.participants.length > 0) {
-      throw new BadRequestException('Cannot delete a team with participants');
+      throw new BadRequestException('impossible de supprimer une équipe avec des participants');
     }
 
     await this.em.removeAndFlush(team);
