@@ -216,8 +216,18 @@
           "length": null,
           "mappedType": "text"
         },
-        "name_team": {
-          "name": "name_team",
+        "long_name_team": {
+          "name": "long_name_team",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "short_name_team": {
+          "name": "short_name_team",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -261,10 +271,20 @@
       "indexes": [
         {
           "columnNames": [
-            "name_team"
+            "long_name_team"
           ],
           "composite": false,
-          "keyName": "Team_name_team_unique",
+          "keyName": "Team_long_name_team_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "short_name_team"
+          ],
+          "composite": false,
+          "keyName": "Team_short_name_team_unique",
           "constraint": true,
           "primary": false,
           "unique": true
@@ -707,8 +727,18 @@
           "length": null,
           "mappedType": "text"
         },
-        "name_tournament": {
-          "name": "name_tournament",
+        "long_name_tournament": {
+          "name": "long_name_tournament",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "short_name_tournament": {
+          "name": "short_name_tournament",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -722,10 +752,20 @@
       "indexes": [
         {
           "columnNames": [
-            "name_tournament"
+            "long_name_tournament"
           ],
           "composite": false,
-          "keyName": "Tournament_name_tournament_unique",
+          "keyName": "Tournament_long_name_tournament_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "short_name_tournament"
+          ],
+          "composite": false,
+          "keyName": "Tournament_short_name_tournament_unique",
           "constraint": true,
           "primary": false,
           "unique": true

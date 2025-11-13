@@ -11,14 +11,16 @@ export class TeamSeeder extends Seeder {
     const lck = await em.findOneOrFail(League, { name_league: 'LCK' });
 
     em.create(Team, {
-      name_team: 'G2 Esports',
+      long_name_team: 'G2 Esports',
+      short_name_team: 'G2',
       founded_at: new Date('2015-02-15'),
       league: lec,
       country: france,
     });
 
     em.create(Team, {
-      name_team: 'T1',
+      long_name_team: 'T1',
+      short_name_team: 'T1',
       founded_at: new Date('2004-12-02'),
       league: lck,
       country: korea,

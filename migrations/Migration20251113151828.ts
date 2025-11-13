@@ -1,6 +1,6 @@
 import { Migration } from '@mikro-orm/migrations';
 
-export class Migration20251113113612 extends Migration {
+export class Migration20251113151828 extends Migration {
 
   override async up(): Promise<void> {
     this.addSql(`create table \`Country\` (\`id_country\` text not null, \`name_country\` text not null, \`code_iso\` text not null, primary key (\`id_country\`));`);
@@ -14,8 +14,9 @@ export class Migration20251113113612 extends Migration {
     this.addSql(`create unique index \`League_name_league_unique\` on \`League\` (\`name_league\`);`);
     this.addSql(`create index \`League_region_id_region_index\` on \`League\` (\`region_id_region\`);`);
 
-    this.addSql(`create table \`Team\` (\`id_team\` text not null, \`name_team\` text not null, \`creation_date\` datetime null, \`country_id_country\` text not null, \`league_id_league\` text not null, constraint \`Team_country_id_country_foreign\` foreign key(\`country_id_country\`) references \`Country\`(\`id_country\`) on update cascade, constraint \`Team_league_id_league_foreign\` foreign key(\`league_id_league\`) references \`League\`(\`id_league\`) on update cascade, primary key (\`id_team\`));`);
-    this.addSql(`create unique index \`Team_name_team_unique\` on \`Team\` (\`name_team\`);`);
+    this.addSql(`create table \`Team\` (\`id_team\` text not null, \`long_name_team\` text not null, \`short_name_team\` text not null, \`creation_date\` datetime null, \`country_id_country\` text not null, \`league_id_league\` text not null, constraint \`Team_country_id_country_foreign\` foreign key(\`country_id_country\`) references \`Country\`(\`id_country\`) on update cascade, constraint \`Team_league_id_league_foreign\` foreign key(\`league_id_league\`) references \`League\`(\`id_league\`) on update cascade, primary key (\`id_team\`));`);
+    this.addSql(`create unique index \`Team_long_name_team_unique\` on \`Team\` (\`long_name_team\`);`);
+    this.addSql(`create unique index \`Team_short_name_team_unique\` on \`Team\` (\`short_name_team\`);`);
     this.addSql(`create index \`Team_country_id_country_index\` on \`Team\` (\`country_id_country\`);`);
     this.addSql(`create index \`Team_league_id_league_index\` on \`Team\` (\`league_id_league\`);`);
 
@@ -32,8 +33,9 @@ export class Migration20251113113612 extends Migration {
     this.addSql(`create table \`Coach\` (\`id_participant\` text not null, \`participant_id_participant\` text not null, constraint \`Coach_participant_id_participant_foreign\` foreign key(\`participant_id_participant\`) references \`Participant\`(\`id_participant\`) on delete cascade on update cascade, primary key (\`id_participant\`));`);
     this.addSql(`create unique index \`Coach_participant_id_participant_unique\` on \`Coach\` (\`participant_id_participant\`);`);
 
-    this.addSql(`create table \`Tournament\` (\`id_tournament\` text not null, \`name_tournament\` text not null, primary key (\`id_tournament\`));`);
-    this.addSql(`create unique index \`Tournament_name_tournament_unique\` on \`Tournament\` (\`name_tournament\`);`);
+    this.addSql(`create table \`Tournament\` (\`id_tournament\` text not null, \`long_name_tournament\` text not null, \`short_name_tournament\` text not null, primary key (\`id_tournament\`));`);
+    this.addSql(`create unique index \`Tournament_long_name_tournament_unique\` on \`Tournament\` (\`long_name_tournament\`);`);
+    this.addSql(`create unique index \`Tournament_short_name_tournament_unique\` on \`Tournament\` (\`short_name_tournament\`);`);
 
     this.addSql(`create table \`Years\` (\`id_years\` text not null, \`year\` integer not null, primary key (\`id_years\`));`);
 

@@ -9,7 +9,10 @@ export class Tournament {
   id_tournament: string = uuidv4();
 
   @Property({ unique: true })
-  name_tournament!: string;
+  long_name_tournament!: string;
+
+  @Property({ unique: true })
+  short_name_tournament!: string;
 
   @OneToMany(() => AnnualTournament, annual => annual.tournament)
   annualTournaments = new Collection<AnnualTournament>(this);

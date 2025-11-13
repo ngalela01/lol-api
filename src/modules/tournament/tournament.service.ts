@@ -19,7 +19,8 @@ export class TournamentService {
 
   async create(data: CreateTournamentDto) : Promise<Tournament> {
    const tournament = new Tournament();
-   tournament.name_tournament = data.name_tournament
+   tournament.long_name_tournament = data.long_name_tournament
+   tournament.short_name_tournament = data.short_name_tournament
    await this.em.persistAndFlush(tournament);
    return tournament;
   }
@@ -29,8 +30,12 @@ export class TournamentService {
       id_tournament: id
     })
 
-    if (data.name_tournament !== undefined) {
-      tournamentEntity.name_tournament = data.name_tournament
+    if (data.long_name_tournament !== undefined) {
+      tournamentEntity.long_name_tournament = data.long_name_tournament
+    }
+
+    if (data.short_name_tournament !== undefined) {
+      tournamentEntity.short_name_tournament = data.short_name_tournament
     }
 
     await this.em.flush()

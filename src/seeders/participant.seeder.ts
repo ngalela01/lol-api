@@ -6,8 +6,8 @@ import { AnnualTournament } from '../modules/annual-tournament/entities/annual-t
 
 export class ParticipantSeeder extends Seeder {
   async run(em) {
-    const g2 = await em.findOneOrFail(Team, { name_team: 'G2 Esports' });
-    const t1 = await em.findOneOrFail(Team, { name_team: 'T1' });
+    const g2 = await em.findOneOrFail(Team, { long_name_team: 'G2 Esports' });
+    const t1 = await em.findOneOrFail(Team, { long_name_team: 'T1' });
     const worlds2024 = await em.findOneOrFail(AnnualTournament, { winner: 'T1' });
     const msi2024 = await em.findOneOrFail(AnnualTournament, { winner: 'Gen.G' });
 

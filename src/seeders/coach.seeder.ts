@@ -6,8 +6,8 @@ import { Coach } from '../modules/coach/entities/coach.entity';
 
 export class CoachSeeder extends Seeder {
   async run(em) {
-    const g2 = await em.findOneOrFail(Team, { name_team: 'G2 Esports' });
-    const t1 = await em.findOneOrFail(Team, { name_team: 'T1' });
+    const g2 = await em.findOneOrFail(Team, { long_name_team: 'G2 Esports' });
+    const t1 = await em.findOneOrFail(Team, { long_name_team: 'T1' });
     const france = await em.findOneOrFail(Country, { name_country: 'France' });
     const korea = await em.findOneOrFail(Country, { name_country: 'South Korea' });
 

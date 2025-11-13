@@ -6,8 +6,8 @@ import { Years } from '../modules/years/entities/years.entity';
 
 export class annualTournamentSeeder extends Seeder {
   async run(em) {
-    const worlds = await em.findOneOrFail(Tournament, { name_tournament: 'World Championship' });
-    const msi = await em.findOneOrFail(Tournament, { name_tournament: 'Mid-Season Invitational' });
+    const worlds = await em.findOneOrFail(Tournament, { long_name_tournament: 'World Championship' });
+    const msi = await em.findOneOrFail(Tournament, { long_name_tournament: 'Mid-Season Invitational' });
     const year2024 = await em.findOneOrFail(Years, { year: 2024 });
 
     em.create(AnnualTournament, {
