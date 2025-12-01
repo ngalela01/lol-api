@@ -11,8 +11,6 @@ export class annualTournamentSeeder extends Seeder {
     const year2024 = await em.findOneOrFail(Years, { year: 2024 });
 
     em.create(AnnualTournament, {
-      id_years: year2024.id_years, 
-      id_tournament: worlds.id_tournament,
       tournament: worlds,
       year: year2024,
       startDate: new Date('2024-10-01'),
@@ -21,8 +19,6 @@ export class annualTournamentSeeder extends Seeder {
     });
 
     em.create(AnnualTournament, {
-      id_years: year2024.id_years,
-      id_tournament: msi.id_tournament,
       tournament: msi,
       year: year2024,
       startDate: new Date('2024-05-01'),

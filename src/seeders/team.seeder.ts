@@ -7,8 +7,8 @@ export class TeamSeeder extends Seeder {
   async run(em) {
     const france = await em.findOneOrFail(Country, { name_country: 'France' });
     const korea = await em.findOneOrFail(Country, { name_country: 'South Korea' });
-    const lec = await em.findOneOrFail(League, { name_league: 'LEC' });
-    const lck = await em.findOneOrFail(League, { name_league: 'LCK' });
+    const lec = await em.findOneOrFail(League, { short_name_league: 'LEC' });
+    const lck = await em.findOneOrFail(League, { short_name_league: 'LCK' });
 
     em.create(Team, {
       long_name_team: 'G2 Esports',

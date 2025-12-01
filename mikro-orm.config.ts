@@ -4,8 +4,6 @@ import { Region } from './src/modules/region/entities/region.entity';
 import { Country } from './src/modules/country/entities/country.entity';
 import { League } from './src/modules/league/entities/league.entity';
 import { Team } from './src/modules/team/entities/team.entity';
-import { Player } from './src/modules/player/entities/player.entity';
-import { Coach } from './src/modules/coach/entities/coach.entity';
 import { Tournament } from './src/modules/tournament/entities/tournament.entity';
 import { Participant } from './src/modules/participant/entities/participant.entity';
 import { Years } from './src/modules/years/entities/years.entity';
@@ -23,8 +21,6 @@ export default defineConfig({
     League,
     AnnualLeague,
     Team,
-    Player,
-    Coach,
     Tournament,
     AnnualTournament,
     Participant,

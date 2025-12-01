@@ -4,6 +4,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { Nationality } from '../../nationality/entities/nationality.entity';
 import { Team } from '../../team/entities/team.entity';
 
+export enum ParticipantRole {
+  PLAYER = 'player',
+  COACH = 'coach',
+}
 
 @Entity({ tableName: 'Participant' })
 export class Participant {
@@ -22,8 +26,11 @@ export class Participant {
   @Property({ nullable: true })
   birth_date?: Date;
 
+  @Property({ nullable: false })
+  role!: ParticipantRole;
+
   @Property({ nullable: true })
-  role?: string;
+  poste?: string;
 
   @Property({ nullable: true })
   main_champion?: string;

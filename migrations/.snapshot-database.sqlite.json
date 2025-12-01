@@ -133,8 +133,18 @@
           "length": null,
           "mappedType": "text"
         },
-        "name_league": {
-          "name": "name_league",
+        "long_name_league": {
+          "name": "long_name_league",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "short_name_league": {
+          "name": "short_name_league",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -158,10 +168,20 @@
       "indexes": [
         {
           "columnNames": [
-            "name_league"
+            "long_name_league"
           ],
           "composite": false,
-          "keyName": "League_name_league_unique",
+          "keyName": "League_long_name_league_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "short_name_league"
+          ],
+          "composite": false,
+          "keyName": "League_short_name_league_unique",
           "constraint": true,
           "primary": false,
           "unique": true
@@ -407,6 +427,16 @@
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "poste": {
+          "name": "poste",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
           "nullable": true,
           "length": null,
           "mappedType": "text"
@@ -467,90 +497,6 @@
             "id_team"
           ],
           "referencedTableName": "Team",
-          "updateRule": "cascade"
-        }
-      },
-      "nativeEnums": {}
-    },
-    {
-      "columns": {
-        "id_participant": {
-          "name": "id_participant",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": null,
-          "mappedType": "text"
-        },
-        "participant_id_participant": {
-          "name": "participant_id_participant",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": null,
-          "mappedType": "text"
-        },
-        "player_role": {
-          "name": "player_role",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "length": null,
-          "mappedType": "text"
-        },
-        "main_champion": {
-          "name": "main_champion",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": true,
-          "length": null,
-          "mappedType": "text"
-        }
-      },
-      "name": "Player",
-      "indexes": [
-        {
-          "columnNames": [
-            "participant_id_participant"
-          ],
-          "composite": false,
-          "keyName": "Player_participant_id_participant_unique",
-          "constraint": true,
-          "primary": false,
-          "unique": true
-        },
-        {
-          "keyName": "primary",
-          "columnNames": [
-            "id_participant"
-          ],
-          "composite": false,
-          "constraint": true,
-          "primary": true,
-          "unique": true
-        }
-      ],
-      "checks": [],
-      "foreignKeys": {
-        "Player_participant_id_participant_foreign": {
-          "constraintName": "Player_participant_id_participant_foreign",
-          "columnNames": [
-            "participant_id_participant"
-          ],
-          "localTableName": "Player",
-          "referencedColumnNames": [
-            "id_participant"
-          ],
-          "referencedTableName": "Participant",
-          "deleteRule": "cascade",
           "updateRule": "cascade"
         }
       },
@@ -646,70 +592,6 @@
             "id_participant"
           ],
           "referencedTableName": "Participant",
-          "updateRule": "cascade"
-        }
-      },
-      "nativeEnums": {}
-    },
-    {
-      "columns": {
-        "id_participant": {
-          "name": "id_participant",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": null,
-          "mappedType": "text"
-        },
-        "participant_id_participant": {
-          "name": "participant_id_participant",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": null,
-          "mappedType": "text"
-        }
-      },
-      "name": "Coach",
-      "indexes": [
-        {
-          "columnNames": [
-            "participant_id_participant"
-          ],
-          "composite": false,
-          "keyName": "Coach_participant_id_participant_unique",
-          "constraint": true,
-          "primary": false,
-          "unique": true
-        },
-        {
-          "keyName": "primary",
-          "columnNames": [
-            "id_participant"
-          ],
-          "composite": false,
-          "constraint": true,
-          "primary": true,
-          "unique": true
-        }
-      ],
-      "checks": [],
-      "foreignKeys": {
-        "Coach_participant_id_participant_foreign": {
-          "constraintName": "Coach_participant_id_participant_foreign",
-          "columnNames": [
-            "participant_id_participant"
-          ],
-          "localTableName": "Coach",
-          "referencedColumnNames": [
-            "id_participant"
-          ],
-          "referencedTableName": "Participant",
-          "deleteRule": "cascade",
           "updateRule": "cascade"
         }
       },
@@ -828,7 +710,7 @@
           "mappedType": "datetime"
         }
       },
-      "name": "user",
+      "name": "User",
       "indexes": [
         {
           "keyName": "primary",
@@ -887,18 +769,8 @@
     },
     {
       "columns": {
-        "id_years": {
-          "name": "id_years",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": null,
-          "mappedType": "text"
-        },
-        "id_tournament": {
-          "name": "id_tournament",
+        "id_annual_tournament": {
+          "name": "id_annual_tournament",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -1003,10 +875,9 @@
         {
           "keyName": "primary",
           "columnNames": [
-            "id_years",
-            "id_tournament"
+            "id_annual_tournament"
           ],
-          "composite": true,
+          "composite": false,
           "constraint": true,
           "primary": true,
           "unique": true
@@ -1056,18 +927,8 @@
     },
     {
       "columns": {
-        "id_years": {
-          "name": "id_years",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": null,
-          "mappedType": "text"
-        },
-        "id_league": {
-          "name": "id_league",
+        "id_annual_league": {
+          "name": "id_annual_league",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -1172,10 +1033,9 @@
         {
           "keyName": "primary",
           "columnNames": [
-            "id_years",
-            "id_league"
+            "id_annual_league"
           ],
-          "composite": true,
+          "composite": false,
           "constraint": true,
           "primary": true,
           "unique": true

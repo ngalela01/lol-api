@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Put, Delete } from '@nestjs/common';
 import { CountryService } from './country.service';
 import { CreateCountryDto } from './dto/create-country.dto';
 import { UpdateCountryDto } from './dto/update-country.dto';
@@ -11,6 +11,26 @@ export class CountryController {
   @Get()
   findAll() {
     return this.countryService.findAll();
+  }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.countryService.findOne(id)
+  }
+
+  @Post()
+  create(@Body() createCountryDto: CreateCountryDto) {
+    return this.countryService.create(createCountryDto);
+  }
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateCountryDto: UpdateCountryDto) {
+    return this.countryService.update(id, updateCountryDto)
+  }
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.countryService.delete(id)
   }
 
 }

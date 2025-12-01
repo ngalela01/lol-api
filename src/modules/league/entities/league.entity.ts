@@ -11,7 +11,10 @@ export class League {
   id_league: string = uuidv4();;
 
   @Property({ unique: true })
-  name_league!: string;
+  long_name_league!: string;
+
+  @Property({ unique: true })
+  short_name_league!: string;
 
   @ManyToOne(() => Region)
   region!: Region;
