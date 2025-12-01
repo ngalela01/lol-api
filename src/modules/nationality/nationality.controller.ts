@@ -2,9 +2,10 @@ import { Controller, Get, Post, Body, Patch, Put, Param, Delete } from '@nestjs/
 import { NationalityService } from './nationality.service';
 import { CreateNationalityDto } from './dto/create-nationality.dto';
 import { UpdateNationalityDto } from './dto/update-nationality.dto';
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Nationality')
+@ApiBearerAuth()
 @Controller('nationality')
 export class NationalityController {
   constructor(private readonly nationalityService: NationalityService) {}
