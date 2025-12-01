@@ -8,12 +8,7 @@ import { CountryService } from '../country/country.service';
 
 @Controller('annual-tournament')
 export class AnnualTournamentController {
-    constructor(
-      private readonly annualTournamentService: AnnualTournamentService,
-      private readonly yearsService: YearsService,
-      private readonly tournamentService: TournamentService,
-      private readonly countryService: CountryService,
-    ) {}
+    constructor(private readonly annualTournamentService: AnnualTournamentService) {}
 
 
   @Get()
@@ -21,32 +16,24 @@ export class AnnualTournamentController {
     return this.annualTournamentService.findAll();
   }
 
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.annualTournamentService.findOne(id)
+  }
+
   @Post()
-  async post(@Body() body: { years: string, tournament: string, year_id: string, tournament_id: string, country: string, dateBeg: Date, dateEnd: Date, winner: string }){
-    const objectYear = await this.yearsService.findOne(body.years);
-    const objectTournament = await this.tournamentService.findOne(body.tournament);
-    const objectCountry = await this.countryService.findOne(body.country);
-      
-    return this.annualTournamentService.create(objectYear, objectTournament, body.year_id, body.tournament_id, objectCountry, body.dateBeg, body.dateEnd, body.winner);
-      
+  create(@Body() createAnnualTournamentDto: CreateAnnualTournamentDto) {
+    return this.annualTournamentService.create(createAnnualTournamentDto);
   }
-  
-  @Delete()
-  async delete(@Body() body: { year_id: string, tournament_id: string}){
-    const item = await this.annualTournamentService.findOne(body.year_id, body.tournament_id);
-    if (!item) {
-      throw new NotFoundException("L'entité demandée n'existe pas.");
-    }
-    await this.annualTournamentService.delete(item);
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateAnnualTournamentDto: UpdateAnnualTournamentDto) {
+    return this.annualTournamentService.update(id, updateAnnualTournamentDto)
   }
-  
-  @Put()
-  async update(@Body() body: { years: string, tournament: string, year_id: string, tournament_id: string, country: string, dateBeg: Date, dateEnd: Date, winner: string }){
-    const objectYear = await this.yearsService.findOne(body.years);
-    const objectTournament = await this.tournamentService.findOne(body.tournament);
-    const objectCountry = await this.countryService.findOne(body.country);
-  
-    await this.annualTournamentService.update(objectYear, objectTournament, body.year_id, body.tournament_id, objectCountry, body.dateBeg, body.dateEnd, body.winner);
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.annualTournamentService.delete(id)
   }
   
 

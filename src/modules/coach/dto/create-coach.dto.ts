@@ -1,1 +1,3 @@
-export class CreateCoachDto {}
+export class CreateCoachDto {
+    participant: string;
+}

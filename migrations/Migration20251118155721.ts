@@ -1,6 +1,6 @@
 import { Migration } from '@mikro-orm/migrations';
 
-export class Migration20251113154621 extends Migration {
+export class Migration20251118155721 extends Migration {
 
   override async up(): Promise<void> {
     this.addSql(`create table \`Country\` (\`id_country\` text not null, \`name_country\` text not null, \`code_iso\` text not null, primary key (\`id_country\`));`);
@@ -30,7 +30,7 @@ export class Migration20251113154621 extends Migration {
     this.addSql(`create index \`Nationality_country_id_country_index\` on \`Nationality\` (\`country_id_country\`);`);
     this.addSql(`create index \`Nationality_participant_id_participant_index\` on \`Nationality\` (\`participant_id_participant\`);`);
 
-    this.addSql(`create table \`Coach\` (\`id_participant\` text not null, \`participant_id_participant\` text not null, constraint \`Coach_participant_id_participant_foreign\` foreign key(\`participant_id_participant\`) references \`Participant\`(\`id_participant\`) on delete cascade on update cascade, primary key (\`id_participant\`));`);
+    this.addSql(`create table \`Coach\` (\`id_coach\` text not null, \`participant_id_participant\` text not null, constraint \`Coach_participant_id_participant_foreign\` foreign key(\`participant_id_participant\`) references \`Participant\`(\`id_participant\`) on delete cascade on update cascade, primary key (\`id_coach\`));`);
     this.addSql(`create unique index \`Coach_participant_id_participant_unique\` on \`Coach\` (\`participant_id_participant\`);`);
 
     this.addSql(`create table \`Tournament\` (\`id_tournament\` text not null, \`name_tournament\` text not null, primary key (\`id_tournament\`));`);
@@ -38,12 +38,12 @@ export class Migration20251113154621 extends Migration {
 
     this.addSql(`create table \`Years\` (\`id_years\` text not null, \`year\` integer not null, primary key (\`id_years\`));`);
 
-    this.addSql(`create table \`Annual_Tournament\` (\`id_years\` text not null, \`id_tournament\` text not null, \`year_id_years\` text not null, \`tournament_id_tournament\` text not null, \`country_id_country\` text null, \`date_beginning\` datetime null, \`date_end\` datetime null, \`winner\` text null, constraint \`Annual_Tournament_year_id_years_foreign\` foreign key(\`year_id_years\`) references \`Years\`(\`id_years\`) on update cascade, constraint \`Annual_Tournament_tournament_id_tournament_foreign\` foreign key(\`tournament_id_tournament\`) references \`Tournament\`(\`id_tournament\`) on update cascade, constraint \`Annual_Tournament_country_id_country_foreign\` foreign key(\`country_id_country\`) references \`Country\`(\`id_country\`) on delete set null on update cascade, primary key (\`id_years\`, \`id_tournament\`));`);
+    this.addSql(`create table \`Annual_Tournament\` (\`id_annual_tournament\` text not null, \`year_id_years\` text not null, \`tournament_id_tournament\` text not null, \`country_id_country\` text null, \`date_beginning\` datetime null, \`date_end\` datetime null, \`winner\` text null, constraint \`Annual_Tournament_year_id_years_foreign\` foreign key(\`year_id_years\`) references \`Years\`(\`id_years\`) on update cascade, constraint \`Annual_Tournament_tournament_id_tournament_foreign\` foreign key(\`tournament_id_tournament\`) references \`Tournament\`(\`id_tournament\`) on update cascade, constraint \`Annual_Tournament_country_id_country_foreign\` foreign key(\`country_id_country\`) references \`Country\`(\`id_country\`) on delete set null on update cascade, primary key (\`id_annual_tournament\`));`);
     this.addSql(`create index \`Annual_Tournament_year_id_years_index\` on \`Annual_Tournament\` (\`year_id_years\`);`);
     this.addSql(`create index \`Annual_Tournament_tournament_id_tournament_index\` on \`Annual_Tournament\` (\`tournament_id_tournament\`);`);
     this.addSql(`create index \`Annual_Tournament_country_id_country_index\` on \`Annual_Tournament\` (\`country_id_country\`);`);
 
-    this.addSql(`create table \`Annual_League\` (\`id_years\` text not null, \`id_league\` text not null, \`year_id_years\` text not null, \`league_id_league\` text not null, \`country_id_country\` text null, \`date_beginning\` datetime null, \`date_end\` datetime null, \`winner\` text null, constraint \`Annual_League_year_id_years_foreign\` foreign key(\`year_id_years\`) references \`Years\`(\`id_years\`) on update cascade, constraint \`Annual_League_league_id_league_foreign\` foreign key(\`league_id_league\`) references \`League\`(\`id_league\`) on update cascade, constraint \`Annual_League_country_id_country_foreign\` foreign key(\`country_id_country\`) references \`Country\`(\`id_country\`) on delete set null on update cascade, primary key (\`id_years\`, \`id_league\`));`);
+    this.addSql(`create table \`Annual_League\` (\`id_annual_league\` text not null, \`year_id_years\` text not null, \`league_id_league\` text not null, \`country_id_country\` text null, \`date_beginning\` datetime null, \`date_end\` datetime null, \`winner\` text null, constraint \`Annual_League_year_id_years_foreign\` foreign key(\`year_id_years\`) references \`Years\`(\`id_years\`) on update cascade, constraint \`Annual_League_league_id_league_foreign\` foreign key(\`league_id_league\`) references \`League\`(\`id_league\`) on update cascade, constraint \`Annual_League_country_id_country_foreign\` foreign key(\`country_id_country\`) references \`Country\`(\`id_country\`) on delete set null on update cascade, primary key (\`id_annual_league\`));`);
     this.addSql(`create index \`Annual_League_year_id_years_index\` on \`Annual_League\` (\`year_id_years\`);`);
     this.addSql(`create index \`Annual_League_league_id_league_index\` on \`Annual_League\` (\`league_id_league\`);`);
     this.addSql(`create index \`Annual_League_country_id_country_index\` on \`Annual_League\` (\`country_id_country\`);`);

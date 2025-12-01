@@ -13,34 +13,36 @@ export class CoachService {
     return this.em.find(Coach, {}, {populate:['participant']})
   }
 
-  async findOne(id_participant: string){
-    return this.em.findOne(Coach, {id_participant});
+  async findOne(id : string) : Promise<Coach> {
+    return this.em.findOneOrFail(Coach, {id_coach: id}, {populate: ['participant']})
   }
 
-  async create(id_participant: string, participant: Participant): Promise<Coach> {
-    const coach = new Coach(id_participant, participant);
+  async create(data: CreateCoachDto) : Promise<Coach> {
+    const participant = await this.em.findOneOrFail(Participant, { id_participant: data.participant });
+
+    const coach = this.em.create(Coach, {
+      participant: participant,
+    } as any);
+
     await this.em.persistAndFlush(coach);
     return coach;
-
   }
 
-  async delete(coach : Coach) {
-    if (!coach) {
-      throw new Error("L'entité à supprimer n'existe pas.");
-    }
-    await this.em.remove(coach).flush();
+  async delete(id: string): Promise<{ message: string }> {
+    const coach = await this.em.findOneOrFail(Coach, { id_coach: id }, { populate: ['participant'] });
+    await this.em.removeAndFlush(coach);
+    return { message: 'Coach removed successfully' };
   }
 
-  async update(id_participant: string, participant: Participant): Promise<Coach> {
-    const entite = await this.em.findOne(Coach, {id_participant});
-    if (!entite) {
-      throw new Error('Entité non trouvée');
+  async update(id: string, data: UpdateCoachDto): Promise<Coach> {
+    const coach = await this.em.findOneOrFail(Coach, { id_coach: id }, { populate: ['participant'] });
+
+    if (data.participant !== undefined) {
+      const participant = await this.em.findOneOrFail(Participant, { id_participant: data.participant });
+      coach.participant = participant;
     }
 
-    entite.participant = participant;
-    
     await this.em.flush();
-    return entite;
-  }  
-
+    return coach;
+  }
 }

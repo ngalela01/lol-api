@@ -12,8 +12,6 @@ export class AnnualleagueSeeder extends Seeder {
     const year2024 = await em.findOneOrFail(Years, { year: 2024 });
 
     em.create(AnnualLeague, {
-      id_years: year2024.id_years,
-      id_league: lec.id_league,
       league: lec,
       year: year2024,
       startDate: new Date('2024-01-10').toString(),
@@ -22,8 +20,6 @@ export class AnnualleagueSeeder extends Seeder {
     });
 
     em.create(AnnualLeague, {
-      id_years: year2024.id_years,  
-      id_league: lck.id_league,
       league: lck,
       year: year2024,
       startDate: new Date('2024-01-15').toString(),

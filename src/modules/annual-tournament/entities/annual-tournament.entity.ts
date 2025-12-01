@@ -2,14 +2,12 @@ import { Entity, PrimaryKey, Property, ManyToOne } from '@mikro-orm/core';
 import { Country } from '../../country/entities/country.entity';
 import { Tournament } from '../../tournament/entities/tournament.entity';
 import { Years } from '../../years/entities/year.entity';
+import { v4 as uuidv4 } from 'uuid';
 
 @Entity({ tableName: 'Annual_Tournament' })
 export class AnnualTournament {
-  @PrimaryKey({ fieldName: 'id_years' })
-  id_years!: string;
-
-  @PrimaryKey({ fieldName: 'id_tournament' })
-  id_tournament!: string;
+  @PrimaryKey()
+  id_annual_tournament: string = uuidv4();
 
   @ManyToOne(() => Years)
   year!: Years;
@@ -28,15 +26,4 @@ export class AnnualTournament {
 
   @Property({ nullable: true })
   winner?: string;
-
-  constructor(years: Years, tournament: Tournament, year_id: string, league_id: string, country: Country, dateBeg: Date, dateEnd: Date, winner: string){
-    this.id_years = year_id;
-    this.id_tournament = league_id;
-    this.year = years;
-    this.tournament = tournament;
-    this.country = country;
-    this.date_beginning = dateBeg;
-    this.date_end = dateEnd;
-    this.winner = winner;
-  }
 }

@@ -653,8 +653,8 @@
     },
     {
       "columns": {
-        "id_participant": {
-          "name": "id_participant",
+        "id_coach": {
+          "name": "id_coach",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -689,7 +689,7 @@
         {
           "keyName": "primary",
           "columnNames": [
-            "id_participant"
+            "id_coach"
           ],
           "composite": false,
           "constraint": true,
@@ -807,18 +807,8 @@
     },
     {
       "columns": {
-        "id_years": {
-          "name": "id_years",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": null,
-          "mappedType": "text"
-        },
-        "id_tournament": {
-          "name": "id_tournament",
+        "id_annual_tournament": {
+          "name": "id_annual_tournament",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -923,10 +913,9 @@
         {
           "keyName": "primary",
           "columnNames": [
-            "id_years",
-            "id_tournament"
+            "id_annual_tournament"
           ],
-          "composite": true,
+          "composite": false,
           "constraint": true,
           "primary": true,
           "unique": true
@@ -976,18 +965,8 @@
     },
     {
       "columns": {
-        "id_years": {
-          "name": "id_years",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": null,
-          "mappedType": "text"
-        },
-        "id_league": {
-          "name": "id_league",
+        "id_annual_league": {
+          "name": "id_annual_league",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -1092,10 +1071,9 @@
         {
           "keyName": "primary",
           "columnNames": [
-            "id_years",
-            "id_league"
+            "id_annual_league"
           ],
-          "composite": true,
+          "composite": false,
           "constraint": true,
           "primary": true,
           "unique": true

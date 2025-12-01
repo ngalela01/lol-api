@@ -1,1 +1,4 @@
-export class CreateNationalityDto {}
+export class CreateNationalityDto {
+    country: string;
+    participant: string;
+}

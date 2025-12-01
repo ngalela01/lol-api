@@ -23,7 +23,6 @@ export class CoachSeeder extends Seeder {
 
     // 🔹 2. Création du coach lié
     em.create(Coach, {
-      id_participant: falco.id_participant,
       participant: falco,
     });
 
@@ -39,7 +38,6 @@ export class CoachSeeder extends Seeder {
 
     // 🔹 4. Création du coach lié
     em.create(Coach, {
-      id_participant: kkoma.id_participant,
       participant: kkoma,
     });
   }

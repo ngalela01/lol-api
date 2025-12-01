@@ -7,42 +7,31 @@ import { ParticipantService } from '../participant/participant.service';
 
 @Controller('coach')
 export class CoachController {
-  constructor(
-    private readonly coachService: CoachService,
-    private readonly participantService: ParticipantService
-  ) {}
+  constructor(private readonly coachService: CoachService) {}
 
   @Get()
   findAll() {
     return this.coachService.findAll();
   }
 
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.coachService.findOne(id)
+  }
+
   @Post()
-  async post(@Body() body: { id_participant: string }){
-    const objectParticipant = await this.participantService.findOne(body.id_participant);
-    if (!objectParticipant) {
-      throw new Error("L'entité n'existe pas");
-    }
-    return this.coachService.create(body.id_participant, objectParticipant);
-      
+  create(@Body() createCoachDto: CreateCoachDto) {
+    return this.coachService.create(createCoachDto);
   }
-  
-  @Delete()
-  async delete(@Body() body: { id_participant }){
-    const item = await this.coachService.findOne(body.id_participant);
-    if (!item) {
-      throw new NotFoundException("L'entité demandée n'existe pas.");
-    }
-    await this.coachService.delete(item);
+
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateCoachDto: UpdateCoachDto) {
+    return this.coachService.update(id, updateCoachDto)
   }
-  
-  @Put()
-  async update(@Body() body: { id_participant: string, id_new_participant: string}){
-    const objectParticipant = await this.participantService.findOne(body.id_new_participant);
-    if (!objectParticipant) {
-      throw new NotFoundException("L'entité demandée n'existe pas.");
-    }
-    await this.coachService.update(body.id_participant, objectParticipant);
+
+  @Delete(':id')
+  remove(@Param('id') id: string) {
+    return this.coachService.delete(id)
   }
 
 

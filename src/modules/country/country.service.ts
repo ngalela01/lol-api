@@ -12,39 +12,39 @@ export class CountryService {
     return this.em.find(Country, {}, {populate:['teams', 'nationalities']})
   }
 
-  async findOne(id_country: string): Promise<Country> {
-    const item = await this.em.findOne(Country, { id_country });
-    if (!item) {
-      throw new Error('Country not found');
-    }
-    return item;
-  
+  async findOne(id : string) : Promise<Country> {
+    return this.em.findOneOrFail(Country, {id_country: id}, {populate: ['teams', 'nationalities']})
   }
 
-  async create(id_participant: string, participant: Participant): Promise<Coach> {
-    const coach = new Coach(id_participant, participant);
-    await this.em.persistAndFlush(coach);
-    return coach;
-  
+  async create(data: CreateCountryDto) : Promise<Country> {
+
+    const country = this.em.create(Country, {
+      name_country: data.name_country,
+      code_iso: data.code_iso,
+    } as any);
+
+    await this.em.persistAndFlush(country);
+    return country;
   }
-  
-  async delete(coach : Coach) {
-    if (!coach) {
-      throw new Error("L'entité à supprimer n'existe pas.");
-    }
-    await this.em.remove(coach).flush();
+
+  async delete(id: string): Promise<{ message: string }> {
+    const country = await this.em.findOneOrFail(Country, { id_country: id }, { populate: ['teams', 'nationalities'] });
+    await this.em.removeAndFlush(country);
+    return { message: 'Country removed successfully' };
   }
-  
-  async update(id_participant: string, participant: Participant): Promise<Coach> {
-    const entite = await this.em.findOne(Coach, {id_participant});
-    if (!entite) {
-      throw new Error('Entité non trouvée');
+
+  async update(id: string, data: UpdateCountryDto): Promise<Country> {
+    const country = await this.em.findOneOrFail(Country, { id_country: id }, { populate: ['teams', 'nationalities'] });
+
+    if (data.name_country !== undefined) {
+      country.name_country = data.name_country;
     }
-  
-    entite.participant = participant;
-      
+
+    if (data.code_iso !== undefined) {
+      country.code_iso = data.code_iso;
+    }
+
     await this.em.flush();
-    return entite;
+    return country;
   }
-
 }

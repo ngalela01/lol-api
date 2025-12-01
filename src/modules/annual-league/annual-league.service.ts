@@ -15,39 +15,74 @@ export class AnnualLeagueService {
     return this.em.find(AnnualLeague, {}, {populate:['year', 'league', 'country']})
   }
 
-  async findOne(id_years: string, id_league: string){
-    return this.em.findOne(AnnualLeague, {id_years, id_league});
+  async findOne(id : string) : Promise<AnnualLeague> {
+    return this.em.findOneOrFail(AnnualLeague, {id_annual_league: id}, {populate: ['year', 'league', 'country']})
   }
 
-  async create(years: Years, league: League, year_id: string, league_id: string, country: Country, dateBeg : Date, dateEnd: Date, winner: string): Promise<AnnualLeague> {
-    const annualLeague = new AnnualLeague(years, league, year_id, league_id, country, dateBeg, dateEnd, winner);
-    await this.em.persistAndFlush(annualLeague);
-    return annualLeague;
-
-  }
-
-  async delete(annualLeague : AnnualLeague) {
-    if (!annualLeague) {
-      throw new Error("L'entité à supprimer n'existe pas.");
+  async create(data: CreateAnnualLeagueDto) : Promise<AnnualLeague> {
+    
+    const league = await this.em.findOneOrFail(League, { id_league: data.league });
+    const year = await this.em.findOneOrFail(Years, { id_years: data.year });
+    let country;
+    if (data.country !== null){
+      country = await this.em.findOneOrFail(Country, { id_country: data.country });
     }
-    await this.em.remove(annualLeague).flush();
-  }
-
-    async update(years: Years, league: League, id_years: string, id_league: string, country: Country, dateBeg : Date, dateEnd: Date, winner: string): Promise<AnnualLeague> {
-    const entite = await this.em.findOne(AnnualLeague, {id_years, id_league});
-    if (!entite) {
-      throw new Error('Entité non trouvée');
+    else {
+      country = null;
     }
 
-    entite.year = years;
-    entite.league = league;
-    entite.country = country;
-    entite.date_beginning = dateBeg;
-    entite.date_end = dateEnd;
-    entite.winner = winner;
+
+    const annual_league = this.em.create(AnnualLeague, {
+      year: year,
+      league: league,
+      country: country,
+      date_beginning: data.date_beginning,
+      date_end: data.date_end,
+      winner: data.winner,
+    } as any);
+
+    await this.em.persistAndFlush(annual_league);
+    return annual_league;
+  }
+
+  async delete(id: string): Promise<{ message: string }> {
+    const annual_league = await this.em.findOneOrFail(AnnualLeague, { id_annual_league: id }, { populate: ['year', 'league', 'country'] });
+    await this.em.removeAndFlush(annual_league);
+    return { message: 'Annual league removed successfully' };
+  }
+
+  async update(id: string, data: UpdateAnnualLeagueDto): Promise<AnnualLeague> {
+    const annual_league = await this.em.findOneOrFail(AnnualLeague, { id_annual_league: id }, { populate: ['year', 'league', 'country'] });
+
+    if (data.year !== undefined) {
+      const year = await this.em.findOneOrFail(Years, { id_years: data.year });
+      annual_league.year = year;
+    }
+
+    if (data.league !== undefined) {
+      const league = await this.em.findOneOrFail(League, { id_league: data.league });
+      annual_league.league = league;
+    }
+
+    if (data.country !== undefined) {
+      const country = await this.em.findOneOrFail(Country, { id_country: data.country });
+      annual_league.country = country;
+    }
+
+    if (data.date_beginning !== undefined) {
+      annual_league.date_beginning = data.date_beginning;
+    }
+
+    if (data.date_end !== undefined) {
+      annual_league.date_end = data.date_end;
+    }
+
+    if (data.winner !== undefined) {
+      annual_league.winner = data.winner;
+    }
 
     await this.em.flush();
-    return entite;
+    return annual_league;
   }
 
 
