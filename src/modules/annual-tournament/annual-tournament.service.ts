@@ -3,9 +3,9 @@ import { CreateAnnualTournamentDto } from './dto/create-annual-tournament.dto';
 import { UpdateAnnualTournamentDto } from './dto/update-annual-tournament.dto';
 import { EntityManager } from '@mikro-orm/sqlite';
 import { AnnualTournament } from './entities/annual-tournament.entity';
-import { Years } from '../years/entities/year.entity';
 import { Tournament } from '../tournament/entities/tournament.entity';
 import { Country } from '../country/entities/country.entity';
+import { Years } from '../years/entities/years.entity';
 
 @Injectable()
 export class AnnualTournamentService {

@@ -1,1 +1,3 @@
-export class CreateTournamentDto {}
+export class CreateTournamentDto {
+    name_tournament: string;
+}

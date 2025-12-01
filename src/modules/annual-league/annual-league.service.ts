@@ -4,8 +4,9 @@ import { UpdateAnnualLeagueDto } from './dto/update-annual-league.dto';
 import { AnnualLeague } from './entities/annual-league.entity';
 import { EntityManager } from '@mikro-orm/sqlite';
 import { League } from '../league/entities/league.entity';
-import { Years } from '../years/entities/year.entity';
+
 import { Country } from '../country/entities/country.entity';
+import { Years } from '../years/entities/years.entity';
 
 @Injectable()
 export class AnnualLeagueService {

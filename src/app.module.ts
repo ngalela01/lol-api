@@ -13,7 +13,8 @@ import { TournamentModule } from './modules/tournament/tournament.module';
 import { AnnualTournamentModule } from './modules/annual-tournament/annual-tournament.module';
 import { ParticipantModule } from './modules/participant/participant.module';
 import { NationalityModule } from './modules/nationality/nationality.module';
-
+import { UserModule } from './modules/user/user.module';
+import { AuthModule } from './modules/auth/auth.module';
 
 @Module({
   imports: [
@@ -29,7 +30,9 @@ import { NationalityModule } from './modules/nationality/nationality.module';
     TournamentModule,
     AnnualTournamentModule,
     ParticipantModule,
-    NationalityModule
+    NationalityModule,
+    UserModule,
+    AuthModule
   ],
 })
 export class AppModule {}
