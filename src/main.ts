@@ -13,6 +13,9 @@ async function bootstrap() {
     .setTitle('LOL API')
     .setDescription('The LOL API description')
     .setVersion('1.0')
+    .addTag('auth')     // affiché en premier
+    .addTag('users') 
+    .addBearerAuth() 
     .build();
   const documentFactory = () => SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, documentFactory);
