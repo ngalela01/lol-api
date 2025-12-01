@@ -162,7 +162,7 @@ export class TeamSeeder extends Seeder {
     em.create(Team, {
       long_name_team: 'PSG Talon',
       short_name_team: 'Talon',
-      founded_at: new Date('2019-12-19'),
+      creation_date: new Date('2019-12-19'),
       league: lcp,
       country: taiwan,
     });
