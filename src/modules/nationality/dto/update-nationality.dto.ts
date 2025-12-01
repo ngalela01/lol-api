@@ -4,7 +4,7 @@ import { ApiPropertyOptional } from '@nestjs/swagger';
 
 export class UpdateNationalityDto extends PartialType(CreateNationalityDto) {
     @ApiPropertyOptional({ example: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', description: "L'id du pays de la nationalité" })
-    country?: string;
+    country_id?: string;
     @ApiPropertyOptional({ example: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', description: "L'id du participant de la nationalité" })
-    participant?: string;
+    participant_id?: string;
 }

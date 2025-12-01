@@ -19,8 +19,8 @@ export class NationalityService {
   }
 
   async create(data: CreateNationalityDto) : Promise<Nationality> {
-    const country = await this.em.findOneOrFail(Country, { id_country: data.country });
-    const participant = await this.em.findOneOrFail(Participant, { id_participant: data.participant});
+    const country = await this.em.findOneOrFail(Country, { id_country: data.country_id });
+    const participant = await this.em.findOneOrFail(Participant, { id_participant: data.participant_id});
 
     const nationality = this.em.create(Nationality, {
       country: country,
@@ -40,13 +40,13 @@ export class NationalityService {
   async update(id: string, data: UpdateNationalityDto): Promise<Nationality> {
     const nationality = await this.em.findOneOrFail(Nationality, { id_nationality: id }, { populate: ['country', 'participant'] });
 
-    if (data.country !== undefined) {
-      const country = await this.em.findOneOrFail(Country, { id_country: data.country });
+    if (data.country_id !== undefined) {
+      const country = await this.em.findOneOrFail(Country, { id_country: data.country_id });
       nationality.country = country;
     }
 
-    if (data.participant !== undefined) {
-      const participant = await this.em.findOneOrFail(Participant, { id_participant: data.participant });
+    if (data.participant_id !== undefined) {
+      const participant = await this.em.findOneOrFail(Participant, { id_participant: data.participant_id });
       nationality.participant = participant;
     }
 

@@ -6,5 +6,5 @@ export class CreateLeagueDto {
     @ApiProperty({ example: 'LEC', description: "Le nom court de la ligue" })
     short_name_league: string;
     @ApiProperty({ example: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', description: "L'id de la région de la ligue" })
-    region: string;
+    region_id: string;
 }

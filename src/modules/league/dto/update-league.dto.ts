@@ -8,5 +8,5 @@ export class UpdateLeagueDto extends PartialType(CreateLeagueDto) {
     @ApiPropertyOptional({ example: 'LEC', description: "Le nom court de la ligue" })
     short_name_league?: string;
     @ApiPropertyOptional({ example: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', description: "L'id de la région de la ligue" })
-    region?: string;
+    region_id?: string;
 }

@@ -21,11 +21,11 @@ export class AnnualTournamentService {
 
   async create(data: CreateAnnualTournamentDto) : Promise<AnnualTournament> {
     
-    const tournament = await this.em.findOneOrFail(Tournament, { id_tournament: data.tournament });
-    const year = await this.em.findOneOrFail(Years, { id_years: data.year });
+    const tournament = await this.em.findOneOrFail(Tournament, { id_tournament: data.tournament_id });
+    const year = await this.em.findOneOrFail(Years, { id_years: data.year_id });
     let country;
-    if (data.country !== null) {
-      country = await this.em.findOneOrFail(Country, { id_country: data.country });
+    if (data.country_id !== null) {
+      country = await this.em.findOneOrFail(Country, { id_country: data.country_id });
     }
     else {
       country = null;
@@ -54,18 +54,18 @@ export class AnnualTournamentService {
   async update(id: string, data: UpdateAnnualTournamentDto): Promise<AnnualTournament> {
     const annual_tournament = await this.em.findOneOrFail(AnnualTournament, { id_annual_tournament: id }, { populate: ['year', 'tournament', 'country'] });
 
-    if (data.year !== undefined) {
-      const year = await this.em.findOneOrFail(Years, { id_years: data.year });
+    if (data.year_id !== undefined) {
+      const year = await this.em.findOneOrFail(Years, { id_years: data.year_id });
       annual_tournament.year = year;
     }
 
-    if (data.tournament !== undefined) {
-      const tournament = await this.em.findOneOrFail(Tournament, { id_tournament: data.tournament });
+    if (data.tournament_id !== undefined) {
+      const tournament = await this.em.findOneOrFail(Tournament, { id_tournament: data.tournament_id });
       annual_tournament.tournament = tournament;
     }
 
-    if (data.country !== undefined) {
-      const country = await this.em.findOneOrFail(Country, { id_country: data.country });
+    if (data.country_id !== undefined) {
+      const country = await this.em.findOneOrFail(Country, { id_country: data.country_id });
       annual_tournament.country = country;
     }
 

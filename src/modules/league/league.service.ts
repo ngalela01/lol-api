@@ -21,7 +21,7 @@ export class LeagueService {
     const league = this.em.create(League, {
       long_name_league: data.long_name_league,
       short_name_league: data.short_name_league,
-      region: data.region
+      region: data.region_id
     } as any);
 
     await this.em.persistAndFlush(league);
@@ -45,8 +45,8 @@ export class LeagueService {
       league.short_name_league = data.short_name_league;
     }
 
-    if (data.region !== undefined) {
-      const region = await this.em.findOneOrFail(Region, { id_region: data.region });
+    if (data.region_id !== undefined) {
+      const region = await this.em.findOneOrFail(Region, { id_region: data.region_id });
       league.region = region;
     }
 
