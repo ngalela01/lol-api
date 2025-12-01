@@ -133,8 +133,18 @@
           "length": null,
           "mappedType": "text"
         },
-        "name_league": {
-          "name": "name_league",
+        "long_name_league": {
+          "name": "long_name_league",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "short_name_league": {
+          "name": "short_name_league",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -158,10 +168,20 @@
       "indexes": [
         {
           "columnNames": [
-            "name_league"
+            "long_name_league"
           ],
           "composite": false,
-          "keyName": "League_name_league_unique",
+          "keyName": "League_long_name_league_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "short_name_league"
+          ],
+          "composite": false,
+          "keyName": "League_short_name_league_unique",
           "constraint": true,
           "primary": false,
           "unique": true
@@ -633,8 +653,8 @@
     },
     {
       "columns": {
-        "id_participant": {
-          "name": "id_participant",
+        "id_coach": {
+          "name": "id_coach",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -669,7 +689,7 @@
         {
           "keyName": "primary",
           "columnNames": [
-            "id_participant"
+            "id_coach"
           ],
           "composite": false,
           "constraint": true,
@@ -788,7 +808,7 @@
           "mappedType": "datetime"
         }
       },
-      "name": "user",
+      "name": "User",
       "indexes": [
         {
           "keyName": "primary",
@@ -847,18 +867,8 @@
     },
     {
       "columns": {
-        "id_years": {
-          "name": "id_years",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": null,
-          "mappedType": "text"
-        },
-        "id_tournament": {
-          "name": "id_tournament",
+        "id_annual_tournament": {
+          "name": "id_annual_tournament",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -963,10 +973,9 @@
         {
           "keyName": "primary",
           "columnNames": [
-            "id_years",
-            "id_tournament"
+            "id_annual_tournament"
           ],
-          "composite": true,
+          "composite": false,
           "constraint": true,
           "primary": true,
           "unique": true
@@ -1016,18 +1025,8 @@
     },
     {
       "columns": {
-        "id_years": {
-          "name": "id_years",
-          "type": "text",
-          "unsigned": false,
-          "autoincrement": false,
-          "primary": false,
-          "nullable": false,
-          "length": null,
-          "mappedType": "text"
-        },
-        "id_league": {
-          "name": "id_league",
+        "id_annual_league": {
+          "name": "id_annual_league",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
@@ -1132,10 +1131,9 @@
         {
           "keyName": "primary",
           "columnNames": [
-            "id_years",
-            "id_league"
+            "id_annual_league"
           ],
-          "composite": true,
+          "composite": false,
           "constraint": true,
           "primary": true,
           "unique": true

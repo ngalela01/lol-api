@@ -8,7 +8,6 @@ import { Tournament } from './entities/tournament.entity';
 export class TournamentService {
   constructor(private readonly em: EntityManager) {}
 
-
   async findAll(): Promise<Tournament[]> {
     return this.em.find(Tournament, {});
   }

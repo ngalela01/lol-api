@@ -19,5 +19,5 @@ export class Country {
   teams = new Collection<Team>(this);
 
   @OneToMany(() => Nationality, nationality => nationality.country)
-  nationalities = new Collection<Nationality>(this);
+  nationalities = new Collection<Nationality>(this); 
 }
