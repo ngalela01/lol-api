@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Put } from '@nestjs/
 import { ParticipantService } from './participant.service';
 import { CreateParticipantDto } from './dto/create-participant.dto';
 import { UpdateParticipantDto } from './dto/update-participant.dto';
+import { ApiBody } from '@nestjs/swagger';
 
 @Controller('participant')
 export class ParticipantController {
@@ -19,11 +20,13 @@ export class ParticipantController {
   }
 
   @Post()
+  @ApiBody({ type: CreateParticipantDto })
   create(@Body() createParticipantDto: CreateParticipantDto) {
     return this.participantService.create(createParticipantDto);
   }
 
   @Put(':id')
+  @ApiBody({ type: UpdateParticipantDto })
   update(@Param('id') id: string, @Body() updateParticipantDto: UpdateParticipantDto) {
     return this.participantService.update(id, updateParticipantDto)
   }

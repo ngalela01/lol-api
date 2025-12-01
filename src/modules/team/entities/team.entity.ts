@@ -12,7 +12,10 @@ export class Team {
   id_team: string = uuidv4();
 
   @Property({ unique: true })
-  name_team!: string;
+  long_name_team!: string;
+
+  @Property({ unique: true })
+  short_name_team!: string;
 
   @Property({ nullable: true })
   creation_date?: Date;
