@@ -7,8 +7,6 @@ import { YearsModule } from './modules/years/years.module';
 import { LeagueModule } from './modules/league/league.module';
 import { AnnualLeagueModule } from './modules/annual-league/annual-league.module';
 import { TeamModule } from './modules/team/team.module';
-import { PlayerModule } from './modules/player/player.module';
-import { CoachModule } from './modules/coach/coach.module';
 import { TournamentModule } from './modules/tournament/tournament.module';
 import { AnnualTournamentModule } from './modules/annual-tournament/annual-tournament.module';
 import { ParticipantModule } from './modules/participant/participant.module';
@@ -25,8 +23,6 @@ import { AuthModule } from './modules/auth/auth.module';
     LeagueModule,
     AnnualLeagueModule,
     TeamModule,
-    PlayerModule,
-    CoachModule,
     TournamentModule,
     AnnualTournamentModule,
     ParticipantModule,

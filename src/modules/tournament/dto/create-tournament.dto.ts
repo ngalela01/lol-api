@@ -1,3 +1,4 @@
 export class CreateTournamentDto {
-    name_tournament: string;
+    long_name_tournament: string;
+    short_name_tournament: string;
 }

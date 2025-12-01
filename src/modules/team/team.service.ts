@@ -24,7 +24,8 @@ export class TeamService {
     const country = await this.em.findOneOrFail(Country, { id_country: data.country_id });
 
     const team = this.em.create(Team, {
-      name_team: data.name_team,
+      long_name_team: data.long_name_team,
+      short_name_team: data.short_name_team,
       creation_date: data.creation_date,
       league,
       country,
@@ -38,8 +39,11 @@ export class TeamService {
   async update(id: string, data: UpdateTeamDto): Promise<Team> {
     const team = await this.em.findOneOrFail(Team, { id_team: id });
 
-    if (data.name_team !== undefined) {
-      team.name_team = data.name_team;
+    if (data.long_name_team !== undefined) {
+      team.long_name_team = data.long_name_team;
+    }
+    if (data.short_name_team !== undefined) {
+      team.short_name_team = data.short_name_team;
     }
 
     if (data.creation_date !== undefined) {
@@ -74,7 +78,7 @@ export class TeamService {
 
     await this.em.removeAndFlush(team);
 
-    return { message: `Team ${team.name_team} deleted successfully` };
+    return { message: `Team ${team.long_name_team} deleted successfully` };
   }
 
 
