@@ -1,30 +1,30 @@
 import { PartialType } from '@nestjs/mapped-types';
 import { CreateParticipantDto } from './create-participant.dto';
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { ParticipantRole } from '../entities/participant.entity';
 
 export class UpdateParticipantDto extends PartialType(CreateParticipantDto) {
-    @ApiProperty({ example: 'John Doe', description: "Le nom du participant" })
+    @ApiPropertyOptional({ example: 'Caps', description: "Le pseudo du participant" })
     pseudo: string;
 
-    @ApiProperty({ example: 'john.doe@example.com', description: "L'email du participant" })
+    @ApiPropertyOptional({ example: 'Rasmus', description: "Le prénom du participant" })
     name: string;
 
-    @ApiProperty({ example: 'Doe', description: "Le prénom du participant" })
+    @ApiPropertyOptional({ example: 'Winther', description: "Le nom du participant" })
     surname: string;
 
-    @ApiProperty({ example: '1990-01-01', description: "La date de naissance du participant" })
+    @ApiPropertyOptional({ example: '2002-01-01', description: "La date de naissance du participant" })
     date_birth: Date;
 
-    @ApiProperty({ example: 'Player', description: "Le role du participant" })
+    @ApiPropertyOptional({ enum: ParticipantRole, description: "Le role du participant"})
     role: ParticipantRole;
 
-    @ApiProperty({ example: 'Mid Laner', description: "Le poste du participant" })
+    @ApiPropertyOptional({ example: 'Mid Laner', description: "Le poste du participant" })
     poste: string;
 
-    @ApiProperty({ example: 'Ahri', description: "Le champion principal du participant" })
+    @ApiPropertyOptional({ example: 'LeBlanc', description: "Le champion joué par le participant" })
     main_champion: string;
 
-    @ApiProperty({ example: 'Team A', description: "L'équipe du participant" })
+    @ApiPropertyOptional({ example: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', description: "L'id de l'équipe du participant" })
     team_id: string;
 }

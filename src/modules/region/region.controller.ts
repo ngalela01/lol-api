@@ -12,7 +12,7 @@ export class RegionController {
 
   @Get()
   @ApiOperation({ summary: 'Récupérer toutes les régions' })
-  @ApiResponse({ status: 200, description: 'Liste des régions récupérées avec succès.' })
+  @ApiResponse({ status: 200, description: 'Liste des régions récupérée avec succès.' })
   findAll() {
     return this.regionService.findAll();
   }

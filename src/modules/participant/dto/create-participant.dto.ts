@@ -1,28 +1,28 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import { ParticipantRole } from '../entities/participant.entity';
 
 export class CreateParticipantDto {
-  @ApiProperty()
+  @ApiProperty({ example: 'Caps', description: "Le pseudo du participant" })
   pseudo: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'Rasmus', description: "Le prénom du participant" })
   name: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'Winther', description: "Le nom du participant" })
   surname: string;
 
-  @ApiProperty({ required: false, type: String, example: "2018-12-06" })
+  @ApiProperty({ example: '2002-01-01', description: "La date de naissance du participant" })
   birth_date?: Date;
 
-  @ApiProperty({ enum: ParticipantRole })
+  @ApiProperty({ enum: ParticipantRole, description: "Le role du participant"})
   role: ParticipantRole;
 
-  @ApiProperty({ required: false })
+  @ApiPropertyOptional({ example: 'Mid Laner', description: "Le poste du participant dans le jeu" })
   poste?: string;
 
-  @ApiProperty({ required: false })
+  @ApiProperty({ example: 'LeBlanc', description: "Le champion joué par le participant" })
   main_champion?: string;
 
-  @ApiProperty()
+  @ApiProperty({ example: 'aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa', description: "L'id de l'équipe du participant" })
   team_id: string;
 }

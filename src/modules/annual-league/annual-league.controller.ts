@@ -12,7 +12,7 @@ export class AnnualLeagueController {
 
   @Get()
   @ApiOperation({ summary: 'Récupérer toutes les ligues annuelles' })
-  @ApiResponse({ status: 200, description: 'Liste des ligues annuelles récupérées avec succès.' })
+  @ApiResponse({ status: 200, description: 'Liste des ligues annuelles récupérée avec succès.' })
   findAll() {
     return this.annualLeagueService.findAll();
   }
