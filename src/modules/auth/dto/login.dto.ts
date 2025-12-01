@@ -4,6 +4,6 @@ export class LoginDto{
     @ApiProperty({example: 'user@example.com'})
     email : string;
 
-    @ApiProperty({example: 'password123'})
+    @ApiProperty({example: 'test1234'})
     password :string;
 }
