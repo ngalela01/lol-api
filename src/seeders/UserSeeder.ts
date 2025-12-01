@@ -17,6 +17,11 @@ export class UserSeeder extends Seeder {
     const plainPassword = 'test1234';
     const hashedPassword = await bcrypt.hash(plainPassword, 10);
     const users: User[] = [];
+    users.push(em.create(User, {
+      password: hashedPassword,
+      email: 'user@example.com',
+      createdAt: new Date(),
+    }))
     for (let i = 0; i < 10; i++) {
       users.push(
         em.create(User, {

@@ -13,6 +13,7 @@ import { ParticipantModule } from './modules/participant/participant.module';
 import { NationalityModule } from './modules/nationality/nationality.module';
 import { UserModule } from './modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
+import { JwtGuard } from './modules/auth/jwt.guard';
 
 @Module({
   imports: [
@@ -30,5 +31,6 @@ import { AuthModule } from './modules/auth/auth.module';
     UserModule,
     AuthModule
   ],
+  providers: [JwtGuard]
 })
 export class AppModule {}

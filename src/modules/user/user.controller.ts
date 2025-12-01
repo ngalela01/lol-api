@@ -2,12 +2,10 @@ import { Body, Controller, Delete, Get, HttpCode, Param, Patch, Post, UseGuards 
 import { UserService } from './user.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { JwtGuard } from '../auth/jwt.guard';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('users')
 @ApiBearerAuth()
-@UseGuards(JwtGuard)
 @Controller('users')
 export class UserController {
   constructor(private readonly userService: UserService) {}
@@ -64,8 +62,6 @@ export class UserController {
   }
 
   @Delete(':id')
-  @HttpCode(200)
-
   async deleteUser( @Param('id') id :string){
     return await this.userService.deleteUser(Number(id));
   }

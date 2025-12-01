@@ -1,10 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@mikro-orm/nestjs';
 import { User } from './entities/user.entity';
-import { EntityManager, EntityRepository } from '@mikro-orm/sqlite';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import * as bcrypt from 'bcrypt';
+import { EntityManager, EntityRepository } from '@mikro-orm/sqlite';
 
 @Injectable()
 export class UserService {
@@ -18,9 +18,9 @@ export class UserService {
     return this.userRepo.findAll();
   }
   async findUserById(id: number): Promise<User> {
-    const user = await this.userRepo.findOne(id);
+    const user = await this.userRepo.findOne({id});
     if (!user) {
-      throw new Error('Utilisateur non trouvé');
+      throw new NotFoundException('Utilisateur non trouvé');
     }
     return user;
   }
@@ -37,9 +37,9 @@ export class UserService {
   }
 
   async updateUser(id: number, data: UpdateUserDto): Promise<User> {
-    const user = await this.userRepo.findOne(id);
+    const user = await this.userRepo.findOne({id});
     if (!user) {
-      throw new Error('Utilisateur non trouvé');
+      throw new NotFoundException('Utilisateur non trouvé');
     }
     // Si un mot de passe est fourni, on le hash
     if (data.password) {
@@ -49,12 +49,22 @@ export class UserService {
     await this.em.flush();
     return user;
   }
+
   async deleteUser(id: number): Promise<{ message: String }> {
-    const user = await this.userRepo.findOne(id);
+    const user = await this.userRepo.findOne({id});
     if (!user) {
-      throw new Error('Utilisateur non trouvé');
+      throw new NotFoundException(`Utilisateur avec ${id} non trouvé`);
     }
-    await this.em.removeAndFlush(user);
-    return { message: 'Utilisateur supprimé avec succès' };
+    try{
+      await this.em.removeAndFlush(user);
+      return { message: 'Utilisateur supprimé avec succès' };
+    }catch(e){
+      console.error('ERREUR DE SUPPRESSION:', e);
+      throw new BadRequestException(
+        'Impossible de supprimer l’utilisateur'
+      );
+    }
+    
+    
   }
 }
