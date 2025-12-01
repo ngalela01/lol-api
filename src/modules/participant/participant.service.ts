@@ -10,11 +10,11 @@ export class ParticipantService {
   constructor(private readonly em: EntityManager) { }
 
   async findAll() {
-    return this.em.find(Participant, {});
+    return this.em.find(Participant, {}, {populate: ['team']});
   }
 
   async findOne(id: string) {
-    return this.em.findOneOrFail(Participant, { id_participant: id }, { populate: ['nationalities'] });
+    return this.em.findOneOrFail(Participant, { id_participant: id }, { populate: ['team'] });
   }
 
   async create(data: CreateParticipantDto): Promise<Participant> {

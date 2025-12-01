@@ -22,11 +22,11 @@ export class AnnualLeagueService {
 
   async create(data: CreateAnnualLeagueDto) : Promise<AnnualLeague> {
     
-    const league = await this.em.findOneOrFail(League, { id_league: data.league });
-    const year = await this.em.findOneOrFail(Years, { id_years: data.year });
+    const league = await this.em.findOneOrFail(League, { id_league: data.league_id });
+    const year = await this.em.findOneOrFail(Years, { id_years: data.year_id });
     let country;
-    if (data.country !== null){
-      country = await this.em.findOneOrFail(Country, { id_country: data.country });
+    if (data.country_id !== null){
+      country = await this.em.findOneOrFail(Country, { id_country: data.country_id });
     }
     else {
       country = null;
@@ -55,18 +55,18 @@ export class AnnualLeagueService {
   async update(id: string, data: UpdateAnnualLeagueDto): Promise<AnnualLeague> {
     const annual_league = await this.em.findOneOrFail(AnnualLeague, { id_annual_league: id }, { populate: ['year', 'league', 'country'] });
 
-    if (data.year !== undefined) {
-      const year = await this.em.findOneOrFail(Years, { id_years: data.year });
+    if (data.year_id !== undefined) {
+      const year = await this.em.findOneOrFail(Years, { id_years: data.year_id });
       annual_league.year = year;
     }
 
-    if (data.league !== undefined) {
-      const league = await this.em.findOneOrFail(League, { id_league: data.league });
+    if (data.league_id !== undefined) {
+      const league = await this.em.findOneOrFail(League, { id_league: data.league_id });
       annual_league.league = league;
     }
 
-    if (data.country !== undefined) {
-      const country = await this.em.findOneOrFail(Country, { id_country: data.country });
+    if (data.country_id !== undefined) {
+      const country = await this.em.findOneOrFail(Country, { id_country: data.country_id });
       annual_league.country = country;
     }
 
