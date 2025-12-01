@@ -11,6 +11,14 @@ export class CountrySeeder extends Seeder {
       { name_country: 'Germany', code_iso: 'DE' },
       { name_country: 'Spain', code_iso: 'ES' },
       { name_country: 'Japan', code_iso: 'JP' },
+      { name_country: 'Brazil', code_iso: 'BR' },
+      { name_country: 'Mexico', code_iso: 'MX' },
+      { name_country: 'Vietnam', code_iso: 'VN' },
+      { name_country: 'United Kingdom', code_iso: 'GB' },
+      { name_country: 'Ukraine', code_iso: 'UA' },
+      { name_country: 'Turkey', code_iso: 'TR' },
+      { name_country: 'Taiwan', code_iso: 'Tw' },
+      { name_country: 'Canada', code_iso: 'CA' },
     ];
 
     for (const country of countries) {
