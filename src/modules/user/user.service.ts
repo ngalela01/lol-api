@@ -50,7 +50,7 @@ export class UserService {
     return user;
   }
   async deleteUser(id: number): Promise<{ message: String }> {
-    const user = this.userRepo.findOne(id);
+    const user = await this.userRepo.findOne(id);
     if (!user) {
       throw new Error('Utilisateur non trouvé');
     }
