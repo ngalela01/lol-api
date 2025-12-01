@@ -2,9 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Query, Put, NotFound
 import { AnnualLeagueService } from './annual-league.service';
 import { CreateAnnualLeagueDto } from './dto/create-annual-league.dto';
 import { UpdateAnnualLeagueDto } from './dto/update-annual-league.dto';
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Annual League')
+@ApiBearerAuth()
 @Controller('annual-league')
 export class AnnualLeagueController {
   constructor(private readonly annualLeagueService: AnnualLeagueService) {}

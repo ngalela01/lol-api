@@ -2,9 +2,10 @@ import { Controller, Get, Post, Body, Patch, Param, Put, Delete } from '@nestjs/
 import { CountryService } from './country.service';
 import { CreateCountryDto } from './dto/create-country.dto';
 import { UpdateCountryDto } from './dto/update-country.dto';
-import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('Country')
+@ApiBearerAuth()
 @Controller('country')
 export class CountryController {
   constructor(private readonly countryService: CountryService) {}
