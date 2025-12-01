@@ -36,7 +36,7 @@ export class TournamentService {
     return tournamentEntity
   }
 
-  async delete(id : string) : Promise<Tournament> {
+  async delete(id : string) : Promise<{message: string}> {
     const tournament = await this.em.findOneOrFail(Tournament, {id_tournament: id}, {populate: ['annualTournaments']})
 
     if (tournament.annualTournaments.length > 0) {
@@ -44,7 +44,7 @@ export class TournamentService {
     }
 
     await this.em.removeAndFlush(tournament)
-    return tournament
+    return { message: 'Tournament removed successfully' }
   }
 
 }
