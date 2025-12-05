@@ -21,11 +21,18 @@ npm install
 Cette commande installe tous les packages nécessaires (NestJS, MikroORM, SQLite, etc.)
 
 🗃️ 3️⃣ Créer la base de données et les tables
-npx mikro-orm migration:up
+pour mac : 
+npm run db:reset/mac
+
+pour Window : 
+npm run db:reset/win
 
 
 Cette commande :
 
-crée automatiquement le fichier database.sqlite à la racine,
-
-applique toutes les migrations existantes (création des tables comme user).
+- Supprime toutes les migrations (rm -rf migrations)
+- Supprime la base SQLite (rm -rf database.sqlite)
+- Génère une migration initiale (mikro-orm migration:create --initial)
+- Recrée la base et applique la migration (mikro-orm migration:fresh)
+- Exécute les seeds (npm run seed:run)
+- applique toutes les migrations existantes (création des tables comme user).
