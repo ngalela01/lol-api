@@ -3,15 +3,393 @@
   "tables": [
     {
       "columns": {
-        "id": {
-          "name": "id",
-          "type": "integer",
+        "id_country": {
+          "name": "id_country",
+          "type": "text",
           "unsigned": false,
-          "autoincrement": true,
-          "primary": true,
+          "autoincrement": false,
+          "primary": false,
           "nullable": false,
           "length": null,
-          "mappedType": "integer"
+          "mappedType": "text"
+        },
+        "name_country": {
+          "name": "name_country",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "code_iso": {
+          "name": "code_iso",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        }
+      },
+      "name": "Country",
+      "indexes": [
+        {
+          "columnNames": [
+            "name_country"
+          ],
+          "composite": false,
+          "keyName": "Country_name_country_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "code_iso"
+          ],
+          "composite": false,
+          "keyName": "Country_code_iso_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "id_country"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id_region": {
+          "name": "id_region",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "name_region": {
+          "name": "name_region",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        }
+      },
+      "name": "Region",
+      "indexes": [
+        {
+          "columnNames": [
+            "name_region"
+          ],
+          "composite": false,
+          "keyName": "Region_name_region_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "id_region"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id_league": {
+          "name": "id_league",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "long_name_league": {
+          "name": "long_name_league",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "short_name_league": {
+          "name": "short_name_league",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "region_id_region": {
+          "name": "region_id_region",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        }
+      },
+      "name": "League",
+      "indexes": [
+        {
+          "columnNames": [
+            "long_name_league"
+          ],
+          "composite": false,
+          "keyName": "League_long_name_league_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "short_name_league"
+          ],
+          "composite": false,
+          "keyName": "League_short_name_league_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "region_id_region"
+          ],
+          "composite": false,
+          "keyName": "League_region_id_region_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "id_league"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "League_region_id_region_foreign": {
+          "constraintName": "League_region_id_region_foreign",
+          "columnNames": [
+            "region_id_region"
+          ],
+          "localTableName": "League",
+          "referencedColumnNames": [
+            "id_region"
+          ],
+          "referencedTableName": "Region",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id_team": {
+          "name": "id_team",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "long_name_team": {
+          "name": "long_name_team",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "short_name_team": {
+          "name": "short_name_team",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "creation_date": {
+          "name": "creation_date",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": null,
+          "mappedType": "datetime"
+        },
+        "country_id_country": {
+          "name": "country_id_country",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "league_id_league": {
+          "name": "league_id_league",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        }
+      },
+      "name": "Team",
+      "indexes": [
+        {
+          "columnNames": [
+            "long_name_team"
+          ],
+          "composite": false,
+          "keyName": "Team_long_name_team_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "short_name_team"
+          ],
+          "composite": false,
+          "keyName": "Team_short_name_team_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "country_id_country"
+          ],
+          "composite": false,
+          "keyName": "Team_country_id_country_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "league_id_league"
+          ],
+          "composite": false,
+          "keyName": "Team_league_id_league_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "id_team"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "Team_country_id_country_foreign": {
+          "constraintName": "Team_country_id_country_foreign",
+          "columnNames": [
+            "country_id_country"
+          ],
+          "localTableName": "Team",
+          "referencedColumnNames": [
+            "id_country"
+          ],
+          "referencedTableName": "Country",
+          "updateRule": "cascade"
+        },
+        "Team_league_id_league_foreign": {
+          "constraintName": "Team_league_id_league_foreign",
+          "columnNames": [
+            "league_id_league"
+          ],
+          "localTableName": "Team",
+          "referencedColumnNames": [
+            "id_league"
+          ],
+          "referencedTableName": "League",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id_participant": {
+          "name": "id_participant",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "pseudo": {
+          "name": "pseudo",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
         },
         "name": {
           "name": "name",
@@ -23,13 +401,301 @@
           "length": null,
           "mappedType": "text"
         },
+        "surname": {
+          "name": "surname",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "birth_date": {
+          "name": "birth_date",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": null,
+          "mappedType": "datetime"
+        },
+        "role": {
+          "name": "role",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "poste": {
+          "name": "poste",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": null,
+          "mappedType": "text"
+        },
+        "main_champion": {
+          "name": "main_champion",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": null,
+          "mappedType": "text"
+        },
+        "team_id_team": {
+          "name": "team_id_team",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        }
+      },
+      "name": "Participant",
+      "indexes": [
+        {
+          "columnNames": [
+            "team_id_team"
+          ],
+          "composite": false,
+          "keyName": "Participant_team_id_team_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "id_participant"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "Participant_team_id_team_foreign": {
+          "constraintName": "Participant_team_id_team_foreign",
+          "columnNames": [
+            "team_id_team"
+          ],
+          "localTableName": "Participant",
+          "referencedColumnNames": [
+            "id_team"
+          ],
+          "referencedTableName": "Team",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id_nationality": {
+          "name": "id_nationality",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "country_id_country": {
+          "name": "country_id_country",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "participant_id_participant": {
+          "name": "participant_id_participant",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        }
+      },
+      "name": "Nationality",
+      "indexes": [
+        {
+          "columnNames": [
+            "country_id_country"
+          ],
+          "composite": false,
+          "keyName": "Nationality_country_id_country_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "participant_id_participant"
+          ],
+          "composite": false,
+          "keyName": "Nationality_participant_id_participant_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "id_nationality"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "Nationality_country_id_country_foreign": {
+          "constraintName": "Nationality_country_id_country_foreign",
+          "columnNames": [
+            "country_id_country"
+          ],
+          "localTableName": "Nationality",
+          "referencedColumnNames": [
+            "id_country"
+          ],
+          "referencedTableName": "Country",
+          "updateRule": "cascade"
+        },
+        "Nationality_participant_id_participant_foreign": {
+          "constraintName": "Nationality_participant_id_participant_foreign",
+          "columnNames": [
+            "participant_id_participant"
+          ],
+          "localTableName": "Nationality",
+          "referencedColumnNames": [
+            "id_participant"
+          ],
+          "referencedTableName": "Participant",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id_tournament": {
+          "name": "id_tournament",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "long_name_tournament": {
+          "name": "long_name_tournament",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "short_name_tournament": {
+          "name": "short_name_tournament",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        }
+      },
+      "name": "Tournament",
+      "indexes": [
+        {
+          "columnNames": [
+            "long_name_tournament"
+          ],
+          "composite": false,
+          "keyName": "Tournament_long_name_tournament_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "columnNames": [
+            "short_name_tournament"
+          ],
+          "composite": false,
+          "keyName": "Tournament_short_name_tournament_unique",
+          "constraint": true,
+          "primary": false,
+          "unique": true
+        },
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "id_tournament"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "unsigned": false,
+          "autoincrement": true,
+          "primary": true,
+          "nullable": false,
+          "length": null,
+          "mappedType": "integer"
+        },
         "email": {
           "name": "email",
           "type": "text",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
-          "nullable": true,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "password": {
+          "name": "password",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
           "length": null,
           "mappedType": "text"
         },
@@ -41,11 +707,10 @@
           "primary": false,
           "nullable": false,
           "length": null,
-          "default": "CURRENT_TIMESTAMP",
           "mappedType": "datetime"
         }
       },
-      "name": "user",
+      "name": "User",
       "indexes": [
         {
           "keyName": "primary",
@@ -60,6 +725,362 @@
       ],
       "checks": [],
       "foreignKeys": {},
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id_years": {
+          "name": "id_years",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "year": {
+          "name": "year",
+          "type": "integer",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "integer"
+        }
+      },
+      "name": "Years",
+      "indexes": [
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "id_years"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {},
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id_annual_tournament": {
+          "name": "id_annual_tournament",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "year_id_years": {
+          "name": "year_id_years",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "tournament_id_tournament": {
+          "name": "tournament_id_tournament",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "country_id_country": {
+          "name": "country_id_country",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": null,
+          "mappedType": "text"
+        },
+        "date_beginning": {
+          "name": "date_beginning",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": null,
+          "mappedType": "datetime"
+        },
+        "date_end": {
+          "name": "date_end",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": null,
+          "mappedType": "datetime"
+        },
+        "winner": {
+          "name": "winner",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": null,
+          "mappedType": "text"
+        }
+      },
+      "name": "Annual_Tournament",
+      "indexes": [
+        {
+          "columnNames": [
+            "year_id_years"
+          ],
+          "composite": false,
+          "keyName": "Annual_Tournament_year_id_years_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "tournament_id_tournament"
+          ],
+          "composite": false,
+          "keyName": "Annual_Tournament_tournament_id_tournament_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "country_id_country"
+          ],
+          "composite": false,
+          "keyName": "Annual_Tournament_country_id_country_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "id_annual_tournament"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "Annual_Tournament_year_id_years_foreign": {
+          "constraintName": "Annual_Tournament_year_id_years_foreign",
+          "columnNames": [
+            "year_id_years"
+          ],
+          "localTableName": "Annual_Tournament",
+          "referencedColumnNames": [
+            "id_years"
+          ],
+          "referencedTableName": "Years",
+          "updateRule": "cascade"
+        },
+        "Annual_Tournament_tournament_id_tournament_foreign": {
+          "constraintName": "Annual_Tournament_tournament_id_tournament_foreign",
+          "columnNames": [
+            "tournament_id_tournament"
+          ],
+          "localTableName": "Annual_Tournament",
+          "referencedColumnNames": [
+            "id_tournament"
+          ],
+          "referencedTableName": "Tournament",
+          "updateRule": "cascade"
+        },
+        "Annual_Tournament_country_id_country_foreign": {
+          "constraintName": "Annual_Tournament_country_id_country_foreign",
+          "columnNames": [
+            "country_id_country"
+          ],
+          "localTableName": "Annual_Tournament",
+          "referencedColumnNames": [
+            "id_country"
+          ],
+          "referencedTableName": "Country",
+          "deleteRule": "set null",
+          "updateRule": "cascade"
+        }
+      },
+      "nativeEnums": {}
+    },
+    {
+      "columns": {
+        "id_annual_league": {
+          "name": "id_annual_league",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "year_id_years": {
+          "name": "year_id_years",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "league_id_league": {
+          "name": "league_id_league",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": null,
+          "mappedType": "text"
+        },
+        "country_id_country": {
+          "name": "country_id_country",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": null,
+          "mappedType": "text"
+        },
+        "date_beginning": {
+          "name": "date_beginning",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": null,
+          "mappedType": "datetime"
+        },
+        "date_end": {
+          "name": "date_end",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": null,
+          "mappedType": "datetime"
+        },
+        "winner": {
+          "name": "winner",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": null,
+          "mappedType": "text"
+        }
+      },
+      "name": "Annual_League",
+      "indexes": [
+        {
+          "columnNames": [
+            "year_id_years"
+          ],
+          "composite": false,
+          "keyName": "Annual_League_year_id_years_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "league_id_league"
+          ],
+          "composite": false,
+          "keyName": "Annual_League_league_id_league_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "country_id_country"
+          ],
+          "composite": false,
+          "keyName": "Annual_League_country_id_country_index",
+          "constraint": false,
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "id_annual_league"
+          ],
+          "composite": false,
+          "constraint": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "Annual_League_year_id_years_foreign": {
+          "constraintName": "Annual_League_year_id_years_foreign",
+          "columnNames": [
+            "year_id_years"
+          ],
+          "localTableName": "Annual_League",
+          "referencedColumnNames": [
+            "id_years"
+          ],
+          "referencedTableName": "Years",
+          "updateRule": "cascade"
+        },
+        "Annual_League_league_id_league_foreign": {
+          "constraintName": "Annual_League_league_id_league_foreign",
+          "columnNames": [
+            "league_id_league"
+          ],
+          "localTableName": "Annual_League",
+          "referencedColumnNames": [
+            "id_league"
+          ],
+          "referencedTableName": "League",
+          "updateRule": "cascade"
+        },
+        "Annual_League_country_id_country_foreign": {
+          "constraintName": "Annual_League_country_id_country_foreign",
+          "columnNames": [
+            "country_id_country"
+          ],
+          "localTableName": "Annual_League",
+          "referencedColumnNames": [
+            "id_country"
+          ],
+          "referencedTableName": "Country",
+          "deleteRule": "set null",
+          "updateRule": "cascade"
+        }
+      },
       "nativeEnums": {}
     }
   ],

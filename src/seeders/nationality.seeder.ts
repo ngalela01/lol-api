@@ -1,0 +1,38 @@
+import { Seeder } from '@mikro-orm/seeder';
+import { Country } from '../modules/country/entities/country.entity';
+import { Nationality } from '../modules/nationality/entities/nationality.entity';
+import { Participant } from '../modules/participant/entities/participant.entity';
+
+
+export class NationalitySeeder extends Seeder {
+  async run(em) {
+    // 🔹 On récupère des pays et participants existants
+    const germany = await em.findOne(Country, { name_country: 'Germany' });
+    const korea = await em.findOne(Country, { name_country: 'South Korea' });
+
+    const faker = await em.findOne(Participant, { pseudo: 'Faker' });
+    const caps = await em.findOne(Participant, { pseudo: 'Caps' });
+
+
+    // ⚠️ Vérifie qu’ils existent avant de créer les relations
+    if (!germany || !korea || !faker || !caps) {
+      console.warn('⚠️ Missing required Country or Participant entities before seeding Nationality');
+      return;
+    }
+
+    // 🔸 Création des nationalités
+    em.create(Nationality, {
+      id_country: korea.id_country,
+      id_participant: faker.id_participant,
+      country: korea,
+      participant: faker,
+    });
+
+    em.create(Nationality, {
+      id_country: germany.id_country,
+      id_participant: caps.id_participant,
+      country: germany,
+      participant: caps,
+    });
+  }
+}
