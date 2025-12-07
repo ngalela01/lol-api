@@ -36,3 +36,8 @@ Cette commande :
 - Recrée la base et applique la migration (mikro-orm migration:fresh)
 - Exécute les seeds (npm run seed:run)
 - applique toutes les migrations existantes (création des tables comme user).
+
+4️⃣ Lancer le projet sur le port 3000
+npm start
+
+Aller sur localhost:3000/api
