@@ -19,11 +19,11 @@ export class JwtGuard implements CanActivate {
     if (url.includes('/auth/login')) {
       return true;
     }
-
     
     // Méthodes protégées
     const protectedMethods = ['POST', 'PATCH', 'DELETE', 'PUT'];
-    if (!protectedMethods.includes(method)) {
+    const protectedGetRoutes = ['/users'];
+    if (!protectedMethods.includes(method) && !(method === 'GET' && protectedGetRoutes.some((route) => url.includes(route)))) {
       return true; // GET, OPTIONS → libres
     }
 
